@@ -13,6 +13,7 @@ static struct zmk_widget_battery_label battery_label_widget;
 static struct zmk_widget_line_segments line_segments_widget;
 static struct zmk_widget_modifier_indicator modifier_indicator_widget;
 static struct zmk_widget_output output_widget;
+static struct zmk_widget_recording_indicator recording_indicator_widget;
 
 lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen = lv_obj_create(NULL);
@@ -37,6 +38,9 @@ lv_obj_t *zmk_display_status_screen() {
     zmk_widget_line_segments_set_labels(&line_segments_widget,
                                         zmk_widget_layer_label_obj(&layer_label_widget),
                                         zmk_widget_battery_label_obj(&battery_label_widget));
+
+    zmk_widget_recording_indicator_init(&recording_indicator_widget, screen);
+    lv_obj_align(zmk_widget_recording_indicator_obj(&recording_indicator_widget), LV_ALIGN_TOP_LEFT, 0, 0);
 
     return screen;
 }

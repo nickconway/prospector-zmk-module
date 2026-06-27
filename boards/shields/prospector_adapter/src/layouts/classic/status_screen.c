@@ -6,11 +6,13 @@
 #include "output.h"
 
 #include <fonts.h>
+#include <recording.h>
 
 static struct zmk_widget_layer_roller layer_roller_widget;
 static struct zmk_widget_battery_bar battery_bar_widget;
 static struct zmk_widget_modifier_indicator modifier_indicator_widget;
 static struct zmk_widget_output output_widget;
+static struct zmk_widget_recording_indicator recording_indicator_widget;
 
 lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen = lv_obj_create(NULL);
@@ -30,6 +32,9 @@ lv_obj_t *zmk_display_status_screen() {
     zmk_widget_layer_roller_init(&layer_roller_widget, screen);
     lv_obj_set_size(zmk_widget_layer_roller_obj(&layer_roller_widget), 224, 140);
     lv_obj_align(zmk_widget_layer_roller_obj(&layer_roller_widget), LV_ALIGN_LEFT_MID, 0, -20);
+
+    zmk_widget_recording_indicator_init(&recording_indicator_widget, screen);
+    lv_obj_align(zmk_widget_recording_indicator_obj(&recording_indicator_widget), LV_ALIGN_TOP_LEFT, 0, 0);
 
     return screen;
 }
